@@ -1,0 +1,221 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+
+body{
+    background-color:#232323;
+}
+
+/*************************************************************
+*********** MENU
+**************************************************************/
+
+nav{
+    width:200px;
+    background-color:#232323;
+    z-index:20;
+    position:fixed;
+}
+
+nav ul{
+    list-style-type:none;
+}
+
+nav a{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    color:#FFFFFF;
+    padding:17.5px;
+    font-size:15px;
+}
+
+nav > ul li:hover .sous{
+    display:block;
+}
+
+nav .sous{
+    display:none;
+    background-color:#232323;
+    position:absolute;
+    width:100%;
+    z-index:10;
+    font-family:'UnifrakturCook', sans-serif;
+}
+
+nav .sous a{
+    padding:10px;
+}
+
+nav .sous a:hover{
+    transition:0.5s;
+}
+
+nav .sous li:nth-child(1) a:hover{background-color:#4682b4;}
+nav .sous li:nth-child(2) a:hover{background-color:#6f9457;}
+nav .sous li:nth-child(3) a:hover{background-color:#9b443f;}
+nav .sous li:nth-child(4) a:hover{background-color:#dda148;}
+nav .sous li:nth-child(5) a:hover{background-color:#76877d;}
+nav .sous li:nth-child(6) a:hover{background-color:#aca9e2;}
+
+/*************************************************************
+*********** SECTION
+**************************************************************/
+
+section{
+    display:none;
+    position:fixed;
+    top:50px;
+    bottom:50px;
+    left:0px;
+    right:0px;
+    overflow:auto;  
+}
+
+section:target{
+    display:block;
+    padding:12px;
+    font-size:12px;
+    color:#FFFFFF;
+}
+
+section h1{
+    position:fixed;
+    top:0px;
+    right:0px;
+    left:0px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:#232323;
+    font-size:25px;
+    font-family:'UnifrakturCook', sans-serif;
+}
+
+section:nth-child(2) h1{background-color:#4682b4;}
+section:nth-child(3) h1{background-color:#6f9457;}
+section:nth-child(4) h1{background-color:#9b443f;}
+section:nth-child(5) h1{background-color:#dda148;}
+section:nth-child(6) h1{background-color:#76877d;}
+section:nth-child(7) h1{background-color:#aca9e2;}
+
+
+
+/*************************************************************
+*********** RESPONSIVE DESIGN
+**************************************************************/
+
+@media (max-width: 550px){
+    section h1{
+        left:100px;
+        right:0px;
+    }
+    nav{
+        width:100px;
+    }
+    nav .sous{
+        width:100vw;
+    }
+    footer span{
+        visibility:hidden;
+    }
+}
+
+/*************************************************************
+*********** ACCUEIL
+**************************************************************/
+
+.contenu-accueil{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.contenu-accueil img{
+    margin-top:100px;
+    width:200px;
+    animation:bounce 4s infinite;
+}
+
+/*************************************************************
+*********** CUL DE CHOUETTE
+**************************************************************/
+
+.dices{text-align:center; user-select:none;}
+
+.dices img{width:90px; margin-top:2px;}
+
+#start{
+    color:#FFFFFF;
+    background-color:#6f9457;
+    font-family:'UnifrakturCook', sans-serif;
+    display:block;
+    cursor:pointer;
+    border:none;
+    margin:auto;
+    user-select:none;
+    font-size:20px;
+    width:350px;
+    padding:20px;
+    margin-top:10px;
+}
+
+#table{
+    display:flex;
+    flex-wrap:nowrap;
+    margin:auto;
+    user-select:none;
+    width:60vw;
+    margin-top:20px;
+}
+
+#block_left, #block_middle, #block_right{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    align-content:flex-start;
+    width:60%;
+    margin-right:20px;
+    gap:5px;
+}
+
+#block_left .combinations, #block_left div, #block_middle .actions, #block_middle div, #block_right .total, #block_right div{
+    font-family:'UnifrakturCook', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+    height:25px;
+    padding:20px;
+}
+
+#block_left .combinations{background-color:#dda148; width:445px; margin-bottom:15px;}
+#block_left div{background-color:#353535; width:200px;}
+
+#block_middle .actions{background-color:#4682b4; width:200px; margin-bottom:15px;}
+#block_middle div{background-color: #353535; width:200px;}
+
+#block_right .total{background-color:#9b443f; width:100px; margin-bottom:15px;}
+#block_right div{background-color:#353535; width:100px; height:250px;}
+
+.block_bottom{margin-top:15px;}
+
+.block:hover{--_p: 75%;}
+
+.block{
+    cursor:pointer;
+    --b:1px;
+    --c:#626262;
+    padding:calc(var(--g) + var(--b));
+    --_c:#353535 0% 25%, var(--c) 0% 50%;
+    --_g1:repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
+    --_g2:repeating-linear-gradient(180deg,var(--_c)) repeat-y;
+    background:
+        var(--_g1) var(--_p, 25%) 0%, var(--_g2) 0% var(--_p,125%),
+        var(--_g1) var(--_p,125%) 100%, var(--_g2) 100% var(--_p, 25%);
+    background-size:200% var(--b),var(--b) 200%;
+    transition:0.75s;
+}

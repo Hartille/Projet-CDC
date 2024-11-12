@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cul de Chouette</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="stylesheet" href="assets/css/version4.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <ul>    
+        <li class="deroulant">
+            <a href="#accueil"><i class="fa-solid fa-bars"></i></a>
+            <ul class="sous">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#cul-de-chouette">Cul de Chouette</a></li>
+                <li><a href="#règles">Règles</a></li>
+                <li><a href="#projet">Projet</a></li>
+                <li><a href="#kaamelott">Kaamelott</a></li>
+                <li><a href="#crédits">Crédits</a></li>          
+            </ul>
+        </li>
+    </ul> 
+</nav>
+
+<section id="accueil">
+    <h1>Accueil</h1>
+    <div class="contenu-accueil">
+        <img src="assets/images/logo.png" alt="logo">
+    </div>
+</section>
+
+<section id="cul-de-chouette">
+    <h1>Cul de Chouette</h1>
+    <div class="contenu-cul-de-chouette">
+        <div class="dices">
+            <img id="Dé1" src="assets/images/dice0.png" alt="Dé 1">
+            <img id="Dé2" src="assets/images/dice0.png" alt="Dé 2">
+            <img id="Dé3" src="assets/images/dice0.png" alt="Dé 3">
+        </div>
+        <div><button id="start">Commencer une partie</button></div>
+        <div id="table">
+            <div id="block_left">
+                <div class="combinations">Combinaisons</div>
+                <div class="block" id="chou">Chouette</div>
+                <div class="block">Cul de Chouette</div>
+                <div class="block">Velute</div>
+                <div class="block">Suite</div>
+                <div class="block">Chouette-Velute</div>
+                <div class="block">Néant</div>
+                <div class="block_bottom" id="combination"></div>
+                <div class="block_bottom" id="points"></div>
+            </div>
+            <div id="block_middle">
+                <div class="actions">Actions et défis</div>
+                <div class="block">Sirop</div>
+                <div class="block">Civet</div>
+                <div class="block">Grelottine</div>
+                <div class="block_bottom" id="blunder">Bévue</div>
+            </div>
+            <div id="block_right">
+                <div class="total">Total</div>
+                <div id="total">0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="règles">
+    <h1>Règles</h1>
+    <div class="contenu-règles">
+    </div>
+</section>
+
+<section id="projet">
+    <h1>Projet</h1>
+    <div class="projet">
+    </div>
+</section>
+
+<section id="kaamelott">
+    <h1>Kaamelott</h1>
+    <div class="contenu-kaamelott">
+    </div>
+</section>
+
+<section id="crédits">
+    <h1>Crédits</h1>
+    <div class="contenu-crédits">
+    </div>    
+</section>
+<script src="https://kit.fontawesome.com/9dc810df0d.js" crossorigin="anonymous"></script>
+<script src="js/version4.js"></script> 
+</body>
+</html>

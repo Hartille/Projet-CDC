@@ -1,0 +1,93 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif   
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+.menu li {
+    width: 200px;
+}
+
+.jeu{
+    text-align: center;
+    margin-top:30px;
+    padding:20px;
+}
+
+.jeu li, .jeu a{
+    text-decoration: none;
+    list-style: none;
+    color: #343b41;
+    text-transform: uppercase;
+}
+
+.jeu a{
+    background-color: #00a79d;
+    padding:10px;
+}
+
+.logo{
+    position: absolute; 
+    top: 50%;
+    left: 50%;  
+    transform: translate(-50%, -50%);
+}
+
+.logo img {
+    width: 100px;
+}
+
+nav {
+    margin-top: 30px;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #343b41;
+    padding:10px;
+    text-transform: uppercase;
+    background-color: #00a79d;
+}
+
+.dices {
+    text-align: center;
+    margin-top:10px;
+  }
+  
+  .dices img {
+    width: 90px;
+  }
+  
+  .button {
+    text-align: center;
+    margin: auto;
+  }
+  
+.button #launch {
+    width: 200px;
+    background-color: #00a79d;
+    color: #FFFFFF;
+    padding: 10px;
+    border:8px solid #343b41;       
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+  .button #RealizedCombination{
+    margin-top:10px;
+  }
