@@ -1,7 +1,7 @@
 # Projet-CDC
 **Jeu du Cul de Chouette**
 
-Ce projet, réalisé en étroite collaboration avec mon professeur d'informatique dans le cadre de mes études supérieures, propose une version jouable sur un navigateur du jeu du **Cul de Chouette**. Ce jeu de dés, issu de la série télévisée *Kaamelott* créée par Alexandre Astier et revisité par des fans (voir [page Wikibooks](https://fr.wikibooks.org/wiki/Bo%C3%AEte_%C3%A0_jeux/Le_cul_de_chouette)), est une adaptation fidèle conçue pour un usage ludique et non commercial.
+Ce projet, réalisé en étroite collaboration avec mon professeur d'informatique dans le cadre de mes études supérieures, propose une version jouable sur un navigateur du jeu du **Cul de Chouette**. Ce jeu de dés, issu de la série télévisée *Kaamelott* créée par Alexandre Astier et revisité par des fans (voir la page du[Cul de Chouette](https://fr.wikibooks.org/wiki/Bo%C3%AEte_%C3%A0_jeux/Le_cul_de_chouette)), est une adaptation fidèle conçue pour un usage ludique et non commercial.
 
 ## Prérequis
 - Un navigateur web compatible avec **HTML5**, **CSS3** et **JavaScript**.
