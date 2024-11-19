@@ -79,7 +79,7 @@ function SelectCombination(combinaison){
     } else if(combinaison === comb.name && comb.score == 0){
         document.getElementById("combination").innerHTML = `${comb.name}`;
         document.getElementById("combination").style.backgroundColor = '#606060';
-    } else{
+    } else{ //Ajout de mistake pour dynamiser la Bévue (let mistake)
         let mistake = total < 5 ? total : 5;
         document.getElementById("points").innerHTML = `- ${mistake}`;
         document.getElementById("points").style.backgroundColor = '#606060';
