@@ -68,7 +68,7 @@ function LaunchDice(number){
 }
 
 function SelectCombination(combinaison){
-    let comb = combination(dés[0], dés[1], dés[2]);
+    let comb = combination();
     if (combinaison === comb.name && comb.score !== 0){
         document.getElementById("combination").innerHTML = `${comb.name} de ${comb.value}`;
         document.getElementById("combination").style.backgroundColor = '#606060';
@@ -76,14 +76,15 @@ function SelectCombination(combinaison){
         document.getElementById("points").style.backgroundColor = '#606060';
         total += comb.score;
         document.getElementById("total").innerHTML = total;
-    }else if(combinaison === comb.name && comb.score == 0){
+    } else if(combinaison === comb.name && comb.score == 0){
         document.getElementById("combination").innerHTML = `${comb.name}`;
         document.getElementById("combination").style.backgroundColor = '#606060';
-    }else{
-        document.getElementById("points").innerHTML = `-5`;
+    } else{
+        let mistake = total < 5 ? total : 5;
+        document.getElementById("points").innerHTML = `- ${mistake}`;
         document.getElementById("points").style.backgroundColor = '#606060';
         document.getElementById("blunder").style.backgroundColor = '#4682b4';
-        total -= 5;
+        total = Math.max(0, total - mistake);
         document.getElementById("total").innerHTML = total;
     }
     BlockDisable();
@@ -126,73 +127,70 @@ function StartEnable(){
 ******** FONCTIONNEMENT DU JEU
 *************************************/
 
+//Fonction ObjetCombination
+function ObjetCombination(name, score = 0, value = 0){
+    return {name, score, value};
+}
+
 //Fonction Cul de Chouette
-function CuldeChouette(dice1, dice2, dice3){
-  let result = new Object();
-  result.name="Cul de Chouette";
-  result.score=40+10*dice1;
-  result.value=dice1;
-  return dice1===dice2 && dice2===dice3 ? result : false;
+function CuldeChouette(dice1, dice2, dice3) {
+    return dés[0]===dés[1] && dés[1]===dés[2] ? ObjetCombination("Cul de Chouette", 40 + 10 * dés[0], dés[0]) : false;
 }
 
 //Fonction Chouette
-function Chouette(dice1, dice2, dice3){
-  let combination = (dice1===dice2 && dice1!==dice3) ? dice1 : (dice2===dice3 && dice2 !==dice1) ? dice2 : (dice1===dice3 && dice1!==dice2) ? dice1 : 0;
-  let result = new Object();
-  result.name="Chouette";
-  result.score=combination**2;
-  result.value=combination;
-  return (dice1===dice2 && dice1!==dice3) || (dice2===dice3 && dice2 !==dice1) || (dice1===dice3 && dice1!==dice2) ? result : false;
+//Si tous les dés ne sont pas égaux, mais que deux sont égaux ? (reformulation pour simplifier la variable let combination car c'est assez verbeux)
+function Chouette(){
+    let combination = (dés[0]===dés[1] && dés[0]!==dés[2]) ? dés[0] : (dés[1]===dés[2] && dés[1] !==dés[0]) ? dés[1] : (dés[0]===dés[2] && dés[0]!==dés[1]) ? dés[0] : 0;
+    return (dés[0]===dés[1] && dés[0]!==dés[2]) || (dés[1]===dés[2] && dés[1] !==dés[0]) || (dés[0]===dés[2] && dés[0]!==dés[1]) ? ObjetCombination("Chouette", combination**2, combination) : false;
 }
 
 //Fonction Velute
-function Velute(dice1, dice2, dice3){
+function Velute(){
   let result = new Object();
   result.name="Velute";
-  result.score=2*Math.max(dice1, dice2, dice3)**2;
-  result.value=Math.max(dice1, dice2, dice3);
-  return (dice1 + dice2 === dice3) || (dice2 + dice3 === dice1) || (dice1 + dice3 === dice2) ? result : false;
+  result.score=2*Math.max(dés[0], dés[1], dés[2])**2;
+  result.value=Math.max(dés[0], dés[1], dés[2]);
+  return (dés[0] + dés[1] === dés[2]) || (dés[1] + dés[2] === dés[0]) || (dés[0] + dés[2] === dés[1]) ? result : false;
 }
 
 //Fonction Chouette-Velute
-function ChouetteVelute(dice1, dice2, dice3){
+function ChouetteVelute(){
   let result = new Object();
   result.name="Chouette-Velute";
-  result.score=2*Math.max(dice1, dice2, dice3)**2;
-  result.value=Math.max(dice1, dice2, dice3);
-  return Chouette(dice1, dice2, dice3) && Velute(dice1, dice2, dice3) ? result : false;
+  result.score=2*Math.max(dés[0], dés[1], dés[2])**2;
+  result.value=Math.max(dés[0], dés[1], dés[2]);
+  return Chouette(dés[0], dés[1], dés[2]) && Velute(dés[0], dés[1], dés[2]) ? result : false;
 }
 
 //Fonction Suite
-function Suite(dice1, dice2, dice3){
-  let dices = [dice1, dice2, dice3];
-  dices.sort((a, b) => a - b);
+function Suite(){
+  dés.sort((a, b) => a - b);
   let result = new Object();
   result.name="Suite";
   result.score=0;
-  return dices[1]===dices[0]+1 && dices[2]===dices[1]+1 ? result : false;
+  return dés[1]===dés[0]+1 && dés[2]===dés[1]+1 ? result : false;
 }
 
 //Fonction Néant
-function Neant(dice1, dice2, dice3){
+function Neant(){
   let result = new Object();
   result.name="Néant";
   result.score=0;
   return result;
 }
 
-function combination(dice1, dice2, dice3){
-  if(ChouetteVelute(dice1, dice2, dice3)){
-      return ChouetteVelute(dice1, dice2, dice3);
-  }else if(Chouette(dice1, dice2, dice3)){
-      return Chouette(dice1, dice2, dice3);
-  }else if(Velute(dice1, dice2, dice3)){
-      return Velute(dice1, dice2, dice3);
-  }else if(CuldeChouette(dice1, dice2, dice3)){
-      return CuldeChouette(dice1, dice2, dice3);
-  }else if(Suite(dice1, dice2, dice3)){
-      return Suite(dice1, dice2, dice3);
+function combination(){
+  if(ChouetteVelute()){
+      return ChouetteVelute();
+  }else if(Chouette()){
+      return Chouette();
+  }else if(Velute()){
+      return Velute();
+  }else if(CuldeChouette()){
+      return CuldeChouette();
+  }else if(Suite()){
+      return Suite();
   }else{
-      return Neant(dice1, dice2, dice3);
+      return Neant();
   }
 }

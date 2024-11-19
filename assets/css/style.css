@@ -137,7 +137,6 @@ section:nth-child(7) h1{background-color:#aca9e2;}
 .contenu-accueil img{
     margin-top:100px;
     width:200px;
-    animation:bounce 4s infinite;
 }
 
 /*************************************************************
