@@ -30,6 +30,7 @@ nav a{
     color:#FFFFFF;
     padding:17.5px;
     font-size:15px;
+    font-weight:200;
 }
 
 nav > ul li:hover .sous{
@@ -54,7 +55,7 @@ nav .sous a:hover{
 }
 
 nav .sous li:nth-child(1) a:hover{background-color:#4682b4;}
-nav .sous li:nth-child(2) a:hover{background-color:#6f9457;}
+nav .sous li:nth-child(2) a:hover{background-color:#303030;}
 nav .sous li:nth-child(3) a:hover{background-color:#9b443f;}
 nav .sous li:nth-child(4) a:hover{background-color:#dda148;}
 nav .sous li:nth-child(5) a:hover{background-color:#76877d;}
@@ -77,7 +78,7 @@ section{
 section:target{
     display:block;
     padding:12px;
-    font-size:12px;
+    font-size:18px;
     color:#FFFFFF;
 }
 
@@ -91,12 +92,14 @@ section h1{
     align-items:center;
     justify-content:center;
     background-color:#232323;
-    font-size:25px;
+    font-size:24px;
+    font-weight:200;
     font-family:'UnifrakturCook', sans-serif;
+    user-select:none;
 }
 
 section:nth-child(2) h1{background-color:#4682b4;}
-section:nth-child(3) h1{background-color:#6f9457;}
+section:nth-child(3) h1{background-color:#303030;}
 section:nth-child(4) h1{background-color:#9b443f;}
 section:nth-child(5) h1{background-color:#dda148;}
 section:nth-child(6) h1{background-color:#76877d;}
@@ -109,19 +112,10 @@ section:nth-child(7) h1{background-color:#aca9e2;}
 **************************************************************/
 
 @media (max-width: 550px){
-    section h1{
-        left:100px;
-        right:0px;
-    }
-    nav{
-        width:100px;
-    }
-    nav .sous{
-        width:100vw;
-    }
-    footer span{
-        visibility:hidden;
-    }
+    section h1{left:100px; right:0px;}
+    nav{width:100px;}
+    nav .sous{width:100vw;}
+    footer span{visibility:hidden;}
 }
 
 /*************************************************************
@@ -147,20 +141,59 @@ section:nth-child(7) h1{background-color:#aca9e2;}
 
 .dices img{width:90px; margin-top:2px;}
 
+.dice-shaking{animation:shake 0.3s ease-in-out infinite;}
+
+@keyframes shake{
+    0%{transform:translate(0,0);}
+    25%{transform:translate(-3px,-3px);}
+    50%{transform:translate(3px,3px);}
+    75%{transform:translate(-3px,3px);}
+    100%{transform:translate(0,0);}
+}
+
 #start{
     color:#FFFFFF;
-    background-color:#6f9457;
+    background-color:transparent;
     font-family:'UnifrakturCook', sans-serif;
     display:block;
     cursor:pointer;
-    border:none;
     margin:auto;
     user-select:none;
-    font-size:20px;
     width:350px;
     padding:20px;
     margin-top:10px;
+    font-size: 20px;
+    font-weight:200;
+    border:1px solid #303030;
+    position:relative;
+    color:#FFFFFF;
+    text-decoration:none;
+    transition:0.3s ease all;
 }
+
+#start:before{
+    transition:0.3s all ease;
+    position:absolute;
+    top:0;
+    left:50%;
+    right:50%;
+    bottom:0;
+    opacity:0;
+    content:'';
+    background-color:#303030;
+    z-index:-1;
+}
+
+#start:hover{color:white;}
+
+#start:hover:before{
+    transition:0.3s all ease;
+    left:0;
+    right:0;
+    opacity:1;
+}
+
+#start:active{transform:scale(0.9);}
 
 #table{
     display:flex;
@@ -186,35 +219,75 @@ section:nth-child(7) h1{background-color:#aca9e2;}
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:20px;
+    font-weight:200;
     height:25px;
     padding:20px;
 }
 
-#block_left .combinations{background-color:#dda148; width:445px; margin-bottom:15px;}
-#block_left div{background-color:#353535; width:200px;}
+#block_left .combinations{background-color:#303030; width:449px; margin-bottom:15px;}
+#block_left div{width:200px;}
 
-#block_middle .actions{background-color:#4682b4; width:200px; margin-bottom:15px;}
-#block_middle div{background-color: #353535; width:200px;}
+#block_middle .actions{background-color:#303030; width:200px; margin-bottom:15px;}
+#block_middle div{width:200px;}
 
-#block_right .total{background-color:#9b443f; width:100px; margin-bottom:15px;}
-#block_right div{background-color:#353535; width:100px; height:250px;}
+#block_right .total{background-color:#303030; width:100px; margin-bottom:15px;}
+#block_right div{background-color:#303030; width:100px; height:250px;}
 
-.block_bottom{margin-top:15px;}
+.block_bottom{margin-top:8px;}
 
-.block:hover{--_p: 75%;}
+#combination, #points, #blunder{border:1px solid #303030}
+
+.combinations, .actions, .total{font-size:20px;}
+
+#chouette, #culdechouette, #velute, #suite, #chouettevelute, #neant, #sirop, #civet, #grelottine, #blunder{font-size:18px;}
+
+#total{font-size:18px;}
 
 .block{
+    color:#FFFFFF;
+    background-color:transparent;
+    font-family:'UnifrakturCook', sans-serif;
+    display:block;
     cursor:pointer;
-    --b:1px;
-    --c:#626262;
-    padding:calc(var(--g) + var(--b));
-    --_c:#353535 0% 25%, var(--c) 0% 50%;
-    --_g1:repeating-linear-gradient(90deg ,var(--_c)) repeat-x;
-    --_g2:repeating-linear-gradient(180deg,var(--_c)) repeat-y;
-    background:
-        var(--_g1) var(--_p, 25%) 0%, var(--_g2) 0% var(--_p,125%),
-        var(--_g1) var(--_p,125%) 100%, var(--_g2) 100% var(--_p, 25%);
-    background-size:200% var(--b),var(--b) 200%;
-    transition:0.75s;
+    margin:auto;
+    user-select:none;
+    position:relative;
+    color:#FFFFFF ;
+    text-decoration:none;
+    transition:0.3s ease all;
+    border:1px solid #303030;
 }
+
+.block:before{
+    transition:0.3s all ease;
+    position:absolute;
+    top:0;
+    left:50%;
+    right:50%;
+    bottom:0;
+    opacity:0;
+    content:'';
+    z-index:-1;
+}
+
+#chouette::before{background-color:#27ae60;}
+#culdechouette:before{background-color:#c0392b;}
+#velute:before{background-color:#3498db;}
+#suite:before{background-color:#f39c12;}
+#chouettevelute:before{background-color:#FC427B;}
+#neant:before{background-color:#6c5ce7;}
+
+#sirop:before{background-color:#218c74;}
+#civet:before{background-color:#40407a;}
+#grelottine:before{background-color:#b71540;}
+
+.block:hover{color:white;}
+
+.block:hover:before{
+    transition:0.3s all ease;
+    left:0;
+    right:0;
+    opacity:1;
+}
+
+.block:active{transform:scale(0.9);}

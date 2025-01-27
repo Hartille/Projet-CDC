@@ -58,32 +58,58 @@ function LaunchDices(){
     }
 }
 
-function LaunchDice(number){
-    function RandomDice(){
+function LaunchDice(number) {
+    function RandomDice() {
         return Math.ceil(Math.random() * 6);
     }
-    let dice = RandomDice();
-    document.getElementById("Dé" + number).src = "assets/images/dice" + dice + ".png";
-    return dice;
+    let finalValue = RandomDice();
+    AnimateDice(number, finalValue); // Appelle l'animation pour ce dé
+    return finalValue;
+}
+
+function AnimateDice(number, finalValue, duration = 1000) {
+    const diceElement = document.getElementById("Dé" + number);
+
+    // Ajoute la classe pour déclencher le tremblement
+    diceElement.classList.add("dice-shaking");
+
+    // Durée pendant laquelle les images aléatoires sont affichées
+    let elapsed = 0;
+    const interval = 250; // Intervalle plus lent entre chaque changement d'image
+
+    const intervalId = setInterval(() => {
+        // Affiche un dé aléatoire pendant l'animation
+        const randomValue = Math.ceil(Math.random() * 6);
+        diceElement.src = "assets/images/dice" + randomValue + ".png";
+        elapsed += interval;
+
+        // Si on dépasse la durée totale, arrêter l'animation
+        if (elapsed >= duration) {
+            clearInterval(intervalId);
+            // Affiche la valeur finale et arrête le tremblement
+            diceElement.src = "assets/images/dice" + finalValue + ".png";
+            diceElement.classList.remove("dice-shaking");
+        }
+    }, interval);
 }
 
 function SelectCombination(combinaison){
     let comb = combination();
     if (combinaison === comb.name && comb.score !== 0){
         document.getElementById("combination").innerHTML = `${comb.name} de ${comb.value}`;
-        document.getElementById("combination").style.backgroundColor = '#606060';
+        document.getElementById("combination").style.backgroundColor = '#353535';
         document.getElementById("points").innerHTML = `+ ${comb.score}`;
-        document.getElementById("points").style.backgroundColor = '#606060';
+        document.getElementById("points").style.backgroundColor = '#353535';
         total += comb.score;
         document.getElementById("total").innerHTML = total;
     } else if(combinaison === comb.name && comb.score == 0){
         document.getElementById("combination").innerHTML = `${comb.name}`;
-        document.getElementById("combination").style.backgroundColor = '#606060';
+        document.getElementById("combination").style.backgroundColor = '#353535';
     } else{ //Ajout de mistake pour dynamiser la Bévue (let mistake)
         let mistake = total < 5 ? total : 5;
         document.getElementById("points").innerHTML = `- ${mistake}`;
-        document.getElementById("points").style.backgroundColor = '#606060';
-        document.getElementById("blunder").style.backgroundColor = '#4682b4';
+        document.getElementById("points").style.backgroundColor = '#353535';
+        document.getElementById("blunder").style.backgroundColor = '#353535';
         total = Math.max(0, total - mistake);
         document.getElementById("total").innerHTML = total;
     }
@@ -133,7 +159,7 @@ function ObjetCombination(name, score = 0, value = 0){
 }
 
 //Fonction Cul de Chouette
-function CuldeChouette(dice1, dice2, dice3) {
+function CuldeChouette() {
     return dés[0]===dés[1] && dés[1]===dés[2] ? ObjetCombination("Cul de Chouette", 40 + 10 * dés[0], dés[0]) : false;
 }
 
@@ -143,6 +169,11 @@ function Chouette() {
     let combination = (dés[0] === dés[1] && dés[1] !== dés[2]) ? dés[0] : (dés[1] === dés[2] && dés[0] !== dés[1]) ? dés[1] : 0;
     return combination ? ObjetCombination("Chouette", combination ** 2, combination) : false;
 }
+/*
+if(dice0 === dice1 || dice0 === dice2) return dice0
+else if (dice1 === dice2) return dice1
+else return 0
+*/
 
 // Fonction Velute
 function Velute() {
